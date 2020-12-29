@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import '../styles/index.module.css';
 import { getCurrentTime } from '../utils/timeHelper';
 import { useThemeUI, Card } from 'theme-ui';
@@ -65,7 +65,9 @@ const Landing = (props: IndexProps) => {
   });
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export default Landing;
+
+export const getServerSideProps: GetServerSideProps = async () => {
   const result = await fetch('https://restcountries.eu/rest/v2/all');
 
   const data = await result.json();
@@ -76,5 +78,3 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-
-export default Landing;
